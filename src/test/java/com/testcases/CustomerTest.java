@@ -1,10 +1,10 @@
 package com.testcases;
 
-import jennie.com.common.BaseTest;
-import jennie.com.pages.CustomerDetailPage;
-import jennie.com.pages.CustomerPage;
-import jennie.com.pages.DashboardPage;
-import jennie.com.pages.LoginPage;
+import com.common.BaseTest;
+import com.pages.CustomerDetailPage;
+import com.pages.CustomerPage;
+import com.pages.DashboardPage;
+import com.pages.LoginPage;
 import org.testng.annotations.Test;
 
 public class CustomerTest extends BaseTest {
@@ -16,7 +16,7 @@ public class CustomerTest extends BaseTest {
     @Test
     public void addNewCustomer() {
         //login
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         //open Dashboard page
         dashboardPage = loginPage.login("admin@example.com", "123456");
         //open Customer page
@@ -27,7 +27,7 @@ public class CustomerTest extends BaseTest {
 
     @Test
     public void verifyCustomer () {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         //open dashboard page
         dashboardPage = loginPage.login("admin@example.com", "123456");
         //open Customer page

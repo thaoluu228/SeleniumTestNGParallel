@@ -1,15 +1,14 @@
 package com.pages;
 
-import jennie.com.keywords.WebUI;
+import driver.DriverManager;
+import keywords.WebUI;
+import keywords.WebUI;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 
 public class CustomerPage {
-    private WebDriver driver;
     private String COMPANY = "Jennie";
-    public CustomerPage (WebDriver _driver){
-        driver = _driver;
-    }
+
     By newCustomerButton = By.xpath("//a[normalize-space()='New Customer']");
     By company = By.xpath("//input[@id='company']");
     By vat = By.xpath("//input[@id='vat']");
@@ -29,64 +28,62 @@ public class CustomerPage {
 
 
     public void addNewCustomer (){
-        WebUI.waitForPageLoaded(driver);
-        driver.findElement(newCustomerButton).click();
-        WebUI.waitForPageLoaded(driver);
-        driver.findElement(company).sendKeys(COMPANY);
-        driver.findElement(vat).sendKeys("123456");
-        //WebUI.sendKeyToElement(driver,vat,"123456");
-        driver.findElement(number).sendKeys("03728467");
-        //WebUI.sendKeyToElement(driver,number,"98745727");
-        driver.findElement(website).sendKeys("https://cmcglobal.com.vn/vi/home-vi/");
-        driver.findElement(group).click();
+        WebUI.waitForPageLoaded();
+        WebUI.clickToElement(newCustomerButton);
+        WebUI.waitForPageLoaded();
+        WebUI.sendKeyToElement(company, COMPANY);
+        WebUI.sendKeyToElement(vat, "1234567");
+        WebUI.sendKeyToElement(number, "0364762");
+        WebUI.sendKeyToElement(website, "https://cmcglobal.com.vn/vi/home-vi/");
+        WebUI.clickToElement(group);
         WebUI.sleep(1);
-        driver.findElement(group_search).sendKeys("Gold", Keys.ENTER);
-        driver.findElement(address).sendKeys("234");
-        driver.findElement(city).sendKeys("Ha Noi");
-        driver.findElement(state).sendKeys("Ha Noi");
-        driver.findElement(zip).sendKeys("0000");
-        driver.findElement(country).click();
+        WebUI.sendKeyEnter(group_search, "Gold");
+        WebUI.sendKeyToElement(address, "235");
+        WebUI.sendKeyToElement(city, "Hanoi");
+        WebUI.sendKeyToElement(state, "Hanoi");
+        WebUI.sendKeyToElement(zip, "0000");
+        WebUI.clickToElement(country);
         WebUI.sleep(1);
-        driver.findElement(country_search).sendKeys("Vietnam", Keys.ENTER);
+        WebUI.sendKeyEnter(country_search, "Vietnam");
         WebUI.sleep(1);
-        driver.findElement(saveButton).click();
+        WebUI.clickToElement(saveButton);
         WebUI.sleep(1);
-        WebUI.waitForPageLoaded(driver);
-        WebUI.waitForElementVisible(driver, By.xpath("//span[@class='alert-title']"));
+        WebUI.waitForPageLoaded();
+        WebUI.waitForElementVisible( By.xpath("//span[@class='alert-title']"));
         //verify message success
-        Assert.assertTrue(WebUI.checkElementExist(driver,"//span[@class='alert-title']" ));
-        System.out.println(driver.findElement(By.xpath("//span[@class='alert-title']")).getText());
+        Assert.assertTrue(WebUI.checkElementExist("//span[@class='alert-title']" ));
+        System.out.println(WebUI.getTextElement(By.xpath("//span[@class='alert-title']")));
     }
     public void verifyCustomer (){
-        WebUI.waitForPageLoaded(driver);
-        driver.findElement(searchCustomer).sendKeys(COMPANY);
+        WebUI.waitForPageLoaded();
+        WebUI.sendKeyToElement(searchCustomer, COMPANY);
         WebUI.sleep(1);
-        WebUI.waitForPageLoaded(driver);
-        WebUI.waitForElementVisible(driver, getCustomer);
-        String getCustomerName = driver.findElement(getCustomer).getText();
+        WebUI.waitForPageLoaded();
+        WebUI.waitForElementVisible( getCustomer);
+        String getCustomerName = WebUI.getTextElement(getCustomer);
         Assert.assertEquals(getCustomerName, COMPANY, "Fail. Customer name not match");
     }
     public void deleteCustomer() {
         //WebElement element = driver.findElement(By.xpath("//tbody/tr[1]/td[3]/a"));
         //Actions action = new Actions(driver);
         //action.moveToElement(element).build().perform();
-        WebUI.hoverMouseToElement(driver, By.xpath("//tbody/tr[1]/td[3]/a"));
+        WebUI.hoverMouseToElement(By.xpath("//tbody/tr[1]/td[3]/a"));
         WebUI.sleep(2);
-        WebUI.waitForElementVisible(driver, By.xpath("//tbody/tr[1]/td[3]/div/a[contains(text(),'Delete')]"));
-        driver.findElement(By.xpath("//tbody/tr[1]/td[3]/div/a[contains(text(),'Delete')]")).click();
+        WebUI.waitForElementVisible( By.xpath("//tbody/tr[1]/td[3]/div/a[contains(text(),'Delete')]"));
+        WebUI.clickToElement(By.xpath("//tbody/tr[1]/td[3]/div/a[contains(text(),'Delete')]"));
         //Alert alert = driver.switchTo().alert();
         //WebUI.sleep(2);
         //alert.accept();
-        WebUI.acceptAlert(driver);
+        WebUI.acceptAlert();
         WebUI.sleep(2);
-        Assert.assertTrue(WebUI.checkElementExist(driver,"//span[@class='alert-title']" ));
-        System.out.println(driver.findElement(By.xpath("//span[@class='alert-title']")).getText());
+        Assert.assertTrue(WebUI.checkElementExist("//span[@class='alert-title']" ));
+        System.out.println(WebUI.getTextElement(By.xpath("//span[@class='alert-title']")));
     }
     public CustomerDetailPage openCustomerDetail(){
-        WebUI.waitForPageLoaded(driver);
-        driver.findElement(getCustomer).click();
+        WebUI.waitForPageLoaded();
+        WebUI.clickToElement(getCustomer);
         WebUI.sleep(1);
-        return new CustomerDetailPage(driver);
+        return new CustomerDetailPage();
     }
 
 }

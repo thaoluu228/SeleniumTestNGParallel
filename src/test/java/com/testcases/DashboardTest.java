@@ -1,9 +1,9 @@
 package com.testcases;
 
-import jennie.com.common.BaseTest;
-import jennie.com.pages.CustomerPage;
-import jennie.com.pages.DashboardPage;
-import jennie.com.pages.LoginPage;
+import com.common.BaseTest;
+import com.pages.CustomerPage;
+import com.pages.DashboardPage;
+import com.pages.LoginPage;
 import org.testng.annotations.Test;
 
 public class DashboardTest extends BaseTest {
@@ -13,7 +13,7 @@ public class DashboardTest extends BaseTest {
 
     @Test
     public void testTotalInDashboard() throws Exception {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         dashboardPage = loginPage.login("admin@example.com", "123456");
         customerPage = dashboardPage.openCustomerPage();
     }

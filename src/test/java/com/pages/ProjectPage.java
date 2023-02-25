@@ -1,6 +1,7 @@
 package com.pages;
 
-import jennie.com.keywords.WebUI;
+import keywords.WebUI;
+import keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -22,9 +23,9 @@ public class ProjectPage {
     By searchProject = By.xpath("//input[@class='form-control input-sm']");
     By getProject = By.xpath("//tbody/tr[1]/td[2]/a");
     public void addNewProject(){
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         driver.findElement(newProjectButton).click();
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         driver.findElement(projectName).sendKeys(PROJECT);
         driver.findElement(customer).click();
         driver.findElement(customerSearch).sendKeys("Jennie", Keys.ENTER);
@@ -35,18 +36,18 @@ public class ProjectPage {
         WebUI.sleep(1);
         driver.findElement(saveButton).click();
         WebUI.sleep(1);
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         //verify message success
-        Assert.assertTrue(WebUI.checkElementExist(driver,"//span[@class='alert-title']" ));
+        Assert.assertTrue(WebUI.checkElementExist("//span[@class='alert-title']" ));
         System.out.println(driver.findElement(By.xpath("//span[@class='alert-title']")).getText());
     }
 
     public void verifyProject(){
-        WebUI.waitForPageLoaded(driver);
+        WebUI.waitForPageLoaded();
         driver.findElement(searchProject).sendKeys(PROJECT);
         WebUI.sleep(1);
-        WebUI.waitForPageLoaded(driver);
-        WebUI.waitForElementVisible(driver, getProject);
+        WebUI.waitForPageLoaded();
+        WebUI.waitForElementVisible( getProject);
         String getProjectName = driver.findElement(getProject).getText();
         Assert.assertEquals(getProjectName, PROJECT, "Fail. Project name doesn't match'");
     }

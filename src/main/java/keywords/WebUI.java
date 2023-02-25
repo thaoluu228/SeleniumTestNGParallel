@@ -1,9 +1,7 @@
 package keywords;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import driver.DriverManager;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import javax.management.DescriptorRead;
 import java.time.Duration;
 import java.util.List;
 
@@ -28,8 +27,8 @@ public class WebUI {
     }
 
 
-    public static void waitForElementVisible (WebDriver driver, By by){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
+    public static void waitForElementVisible ( By by){
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (Throwable error){
@@ -38,9 +37,9 @@ public class WebUI {
         }
     }
 
-    public static void waitForElementPresent (WebDriver driver, By by){
+    public static void waitForElementPresent ( By by){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
+            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
             wait.until(ExpectedConditions.presenceOfElementLocated(by));
         } catch (Throwable error){
             Assert.fail("Element not exists " + by.toString());
@@ -48,9 +47,9 @@ public class WebUI {
         }
     }
 
-    public static void waitForElementClickable (WebDriver driver, By by){
+    public static void waitForElementClickable (By by){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
+            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
             wait.until(ExpectedConditions.elementToBeClickable(by));
         }catch(Throwable error){
             Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
@@ -58,8 +57,8 @@ public class WebUI {
         }
     }
 
-    public static Boolean checkElementExist(WebDriver driver, String xpath) {
-        List<WebElement> listElement = driver.findElements(By.xpath(xpath));
+    public static Boolean checkElementExist(String xpath) {
+        List<WebElement> listElement = DriverManager.getDriver().findElements(By.xpath(xpath));
 
         if (listElement.size() > 0) {
             System.out.println("Element " + xpath + " existing.");
@@ -70,55 +69,66 @@ public class WebUI {
         }
     }
 
-    public static void waitForPageLoaded(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30), Duration.ofMillis(500));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    public static void waitForPageLoaded() {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(20), Duration.ofMillis(500));
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
 
-        //Wait for Javascript to load
-        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver driver) {
-                return js.executeScript("return document.readyState").toString().equals("complete");
+        // wait for Javascript to loaded
+        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor) DriverManager.getDriver()).executeScript("return document.readyState")
+                .toString().equals("complete");
+
+        //Get JS is Ready
+        boolean jsReady = js.executeScript("return document.readyState").toString().equals("complete");
+
+        //Wait Javascript until it is Ready!
+        if (!jsReady) {
+            System.out.println("Javascript in NOT Ready!");
+            //Wait for Javascript to load
+            try {
+                wait.until(jsLoad);
+            } catch (Throwable error) {
+                error.printStackTrace();
+                Assert.fail("Timeout waiting for page load (Javascript). (" + 20 + "s)");
             }
-        };
+        }
     }
 
-    public static WebElement findElement(WebDriver driver, By by){
-        return driver.findElement(by);
+    public static WebElement findElement(By by){
+        return DriverManager.getDriver().findElement(by);
     }
 
-    public static void openURL (WebDriver driver, String URL) {
-        driver.get(URL);
-        waitForPageLoaded(driver);
+    public static void openURL (String URL) {
+        DriverManager.getDriver().get(URL);
+        waitForPageLoaded();
     }
-    public static void clickToElement (WebDriver driver, By by){
-        waitForElementVisible(driver, by);
-        findElement(driver, by).click();
+    public static void clickToElement ( By by){
+        waitForElementVisible(by);
+        findElement( by).click();
     }
-    public static void sendKeyToElement (WebDriver driver, By by, String value){
-        findElement(driver,by).sendKeys(value);
+    public static void sendKeyToElement (By by, String value){
+        findElement(by).sendKeys(value);
     }
-    public static String getTextElement(WebDriver driver, By by){
-        return findElement(driver,by).getText();
+    public static String getTextElement(By by){
+        return findElement(by).getText();
     }
-    public static void acceptAlert (WebDriver driver){
+    public static void acceptAlert (){
         WebUI.sleep(2);
-        driver.switchTo().alert().accept();
+        DriverManager.getDriver().switchTo().alert().accept();
     }
-    public static void hoverMouseToElement(WebDriver driver, By by){
-        action = new Actions (driver);
-        element = findElement(driver, by);
+    public static void hoverMouseToElement(By by){
+        action = new Actions (DriverManager.getDriver());
+        element = findElement(by);
         action.moveToElement(element).build().perform();
     }
-    public static void selectItemInHTML(WebDriver driver, By by, String value){
-        element = findElement(driver, by);
+    public static void selectItemInHTML(By by, String value){
+        element = findElement(by);
         select = new Select(element);
         select.selectByVisibleText(value);
     }
-    public static void selectItemInCustomDropdown(WebDriver driver, By parentXpath, By listOptions, String expectedText){
-        findElement(driver, parentXpath).click();
-        List<WebElement> allItems = driver.findElements(listOptions);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
+    public static void selectItemInCustomDropdown(By parentXpath, By listOptions, String expectedText){
+        findElement(parentXpath).click();
+        List<WebElement> allItems = DriverManager.getDriver().findElements(listOptions);
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT));
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(listOptions));
         for (WebElement item : allItems){
             System.out.println("List dropdown: " + item.getText());
@@ -129,25 +139,33 @@ public class WebUI {
         }
 
     }
-    public static void getFirstItemInHTML(WebDriver driver, By by){
-        element = findElement(driver, by);
+    public static void getFirstItemInHTML(By by){
+        element = findElement( by);
         select = new Select(element);
         select.getFirstSelectedOption();
     }
 
-    public static String getAttribute(WebDriver driver, By by, String attribute){
-        return findElement(driver, by).getAttribute(attribute);
+    public static String getAttribute( By by, String attribute){
+        return findElement(by).getAttribute(attribute);
     }
 
-    public void checkTheCheckbox(WebDriver driver, By by){
-        element = findElement(driver, by);
+    public static void checkTheCheckbox(By by){
+        element = findElement( by);
         if(!element.isSelected()){
             element.click();
         }
     }
-    public static void scrollToElementWithJS(WebDriver driver, By by){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", findElement(driver, by));
+    public static void scrollToElementWithJS( By by){
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", findElement( by));
+    }
+    public static boolean isDisplayed(By by){
+        waitForPageLoaded();
+        sleep(1);
+        return findElement(by).isDisplayed();
+    }
+    public static void sendKeyEnter (By by, String value){
+        findElement(by).sendKeys(value, Keys.ENTER);
     }
 
 }

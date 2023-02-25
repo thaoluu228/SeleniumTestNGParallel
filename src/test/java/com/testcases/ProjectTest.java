@@ -1,9 +1,9 @@
 package com.testcases;
 
-import jennie.com.common.BaseTest;
-import jennie.com.pages.DashboardPage;
-import jennie.com.pages.LoginPage;
-import jennie.com.pages.ProjectPage;
+import com.common.BaseTest;
+import com.pages.DashboardPage;
+import com.pages.LoginPage;
+import com.pages.ProjectPage;
 import org.testng.annotations.Test;
 
 public class ProjectTest extends BaseTest {
@@ -13,7 +13,7 @@ public class ProjectTest extends BaseTest {
 
     @Test
     public void addNewProject() throws Exception {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         //open dashboard page
         dashboardPage = loginPage.login("admin@example.com", "123456");
         //open project page
@@ -22,7 +22,7 @@ public class ProjectTest extends BaseTest {
     }
     @Test
     public void verifyProject() throws Exception {
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         dashboardPage = loginPage.login("admin@example.com", "123456");
         projectPage = dashboardPage.openProjectPage();
         projectPage.verifyProject();

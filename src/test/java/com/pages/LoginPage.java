@@ -1,12 +1,13 @@
 package com.pages;
 
-import jennie.com.keywords.WebUI;
+import driver.DriverManager;
+import keywords.WebUI;
+import keywords.WebUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class LoginPage {
-    private WebDriver driver;
     private String URL = "https://crm.anhtester.com/admin/authentication";
 
     By inputEmail = By.id("email");
@@ -14,36 +15,34 @@ public class LoginPage {
     By loginButton = By.xpath("//button[normalize-space()='Login']");
     By errMsg = By.xpath("//div[@class='text-center alert alert-danger']");
 
-    public LoginPage(WebDriver _driver){
-        driver = _driver;
-    }
+
     public void enterEmail (String email) {
-        driver.findElement(inputEmail).sendKeys(email);
+
+        WebUI.sendKeyToElement(inputEmail,email);
     }
-    public void enterPassword (String password) {
-        driver.findElement(inputPassword).sendKeys(password);
+    public void enterPassword (String password) {WebUI.sendKeyToElement(inputPassword, password);
     }
     public void clickLoginButton (){
-        driver.findElement(loginButton).click();
+        WebUI.clickToElement(loginButton);
     }
     public void verifyErrMsg (){
-        Assert.assertTrue(driver.findElement(errMsg).isDisplayed(),"Fail, error message is not displayed");
-        Assert.assertEquals(driver.findElement(errMsg).getText(), "Invalid email or password");
+        Assert.assertTrue(WebUI.isDisplayed(errMsg),"Fail, error message is not displayed");
+        Assert.assertEquals(WebUI.getTextElement(errMsg), "Invalid email or password");
     }
     public DashboardPage login (String email, String password) {
-        driver.get(URL);
+        DriverManager.getDriver().get(URL);
         enterEmail(email);
         enterPassword(password);
         WebUI.sleep(2);
         clickLoginButton();
         WebUI.sleep(2);
-        WebUI.checkElementExist(driver, "//li[@class='menu-item-dashboard active']/a//span");
-        Assert.assertEquals(driver.findElement(By.xpath("//li[@class='menu-item-dashboard active']/a//span")).getText(),"Dashboard");
-        return new DashboardPage(driver);
+        WebUI.checkElementExist( "//li[@class='menu-item-dashboard active']/a//span");
+        Assert.assertEquals(WebUI.getTextElement(By.xpath("//li[@class='menu-item-dashboard active']/a//span")),"Dashboard");
+        return new DashboardPage();
     }
 
     public void loginFail (String email, String password) {
-        driver.get(URL);
+        DriverManager.getDriver().get(URL);
         enterEmail(email);
         enterPassword(password);
         clickLoginButton();
