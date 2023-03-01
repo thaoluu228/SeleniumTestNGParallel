@@ -13,7 +13,7 @@ public class BaseTest {
 
     @BeforeClass
     @Parameters({"browser"})
-    public void createDriver(@Optional("chrome") String browserName) {
+    public void createBrowser(@Optional("chrome") String browserName) {
 
         WebDriver driver = setupBrowser(browserName);
         DriverManager.setDriver(driver);
@@ -47,11 +47,6 @@ public class BaseTest {
 
     @AfterClass
     public void closeDriver() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         if (DriverManager.getDriver() != null) {
             DriverManager.quit();
         }

@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8a9e6f3-6a00-4e93-a21c-f96e33d78315" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/driver/DriverManager.java" afterDir="false" />
+    <list default="true" id="a8a9e6f3-6a00-4e93-a21c-f96e33d78315" name="Changes" comment="update driver">
+      <change afterPath="$PROJECT_DIR$/src/main/java/helpers/PropertiesHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/helpers/SystemHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/keywords/WebUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/keywords/WebUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/suites/SuiteParallel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/suites/SuiteParallel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/suites/SuiteTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/suites/SuiteTest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/common/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/common/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/pages/CustomerDetailPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/pages/CustomerDetailPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/pages/CustomerPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/pages/CustomerPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/pages/DashboardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/pages/DashboardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/pages/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/pages/ProjectPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/pages/ProjectPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/testcases/CustomerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/testcases/CustomerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/testcases/DashboardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/testcases/DashboardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/testcases/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/testcases/LoginTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/testcases/ProjectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/testcases/ProjectTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +78,14 @@
       <option name="presentableId" value="Default" />
       <updated>1677167783725</updated>
     </task>
+    <task id="LOCAL-00001" summary="update driver">
+      <created>1677316870964</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677316870964</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,5 +98,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update driver" />
+    <option name="LAST_COMMIT_MESSAGE" value="update driver" />
   </component>
 </project>
