@@ -168,4 +168,15 @@ public class WebUI {
         findElement(by).sendKeys(value, Keys.ENTER);
     }
 
+    public static boolean dragAndDrop(By fromElement, By toElement){
+        try{
+            action = new Actions(DriverManager.getDriver());
+            action.dragAndDrop(findElement(fromElement), findElement(toElement)).build().perform();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+
 }
