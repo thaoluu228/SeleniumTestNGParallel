@@ -3,7 +3,9 @@ package com.common;
 import driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.*;
@@ -23,7 +25,9 @@ public class BaseTest {
         WebDriver driver;
         switch (browserName.trim().toLowerCase()) {
             case "chrome":
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
                 break;
             case "firefox":
@@ -31,7 +35,9 @@ public class BaseTest {
                 driver.manage().window().maximize();
                 break;
             case "edge":
-                driver = new EdgeDriver();
+                EdgeOptions option = new EdgeOptions();
+                option.addArguments("--remote-allow-origins=*");
+                driver = new EdgeDriver(option);
                 driver.manage().window().maximize();
                 break;
             case "safari":
