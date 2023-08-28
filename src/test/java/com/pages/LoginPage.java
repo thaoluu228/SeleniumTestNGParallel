@@ -20,7 +20,8 @@ public class LoginPage {
 
         WebUI.sendKeyToElement(inputEmail,email);
     }
-    public void enterPassword (String password) {WebUI.sendKeyToElement(inputPassword, password);
+    public void enterPassword (String password) {
+        WebUI.sendKeyToElement(inputPassword, password);
     }
     public void clickLoginButton (){
         WebUI.clickToElement(loginButton);

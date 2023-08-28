@@ -5,11 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8a9e6f3-6a00-4e93-a21c-f96e33d78315" name="Changes" comment="update driver">
-      <change afterPath="$PROJECT_DIR$/src/main/java/excel/ExcelHelpers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/testcases/TestDataProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reports/AllureManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reports/ExtentReportManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reports/ExtentTestManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/LogUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/listeners/TestListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/pages/HomePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/testcases/HomePageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/driver/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/driver/DriverManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/keywords/WebUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/keywords/WebUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/common/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/common/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/pages/LoginPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +50,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;15&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/apple/Documents/Project Documents/Automation/SeleniumTestNGParallel/src&quot;
   }
 }</component>
@@ -52,7 +63,76 @@
       <recent name="keywords" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="TestNG.HomePageTest">
+    <configuration name="HomePageTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumTestNGParallel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.testcases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.testcases" />
+      <option name="MAIN_CLASS_NAME" value="com.testcases.HomePageTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HomePageTest.checkCurrentURL" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumTestNGParallel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.testcases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.testcases" />
+      <option name="MAIN_CLASS_NAME" value="com.testcases.HomePageTest" />
+      <option name="METHOD_NAME" value="checkCurrentURL" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumTestNGParallel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.testcases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.testcases" />
+      <option name="MAIN_CLASS_NAME" value="com.testcases.LoginTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestScreenshot" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="SeleniumTestNGParallel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.testcases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.testcases" />
+      <option name="MAIN_CLASS_NAME" value="com.testcases.TestScreenshot" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="/Users/apple/Documents/Project Documents/Automation/SeleniumTestNGParallel/src/suites/SuiteTest.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="SeleniumTestNGParallel" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/src/suites/SuiteTest.xml" />
@@ -65,6 +145,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.HomePageTest" />
+        <item itemvalue="TestNG.HomePageTest.checkCurrentURL" />
+        <item itemvalue="TestNG.LoginTest" />
+        <item itemvalue="TestNG.TestScreenshot" />
         <item itemvalue="TestNG./Users/apple/Documents/Project Documents/Automation/SeleniumTestNGParallel/src/suites/SuiteTest.xml" />
       </list>
     </recent_temporary>
@@ -92,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677654760435</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update driver">
+      <created>1678452482794</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1678452482794</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -1,5 +1,6 @@
 package keywords;
 
+import com.aventstack.extentreports.Status;
 import driver.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -8,8 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import reports.ExtentTestManager;
+import utils.LogUtils;
 
-import javax.management.DescriptorRead;
 import java.time.Duration;
 import java.util.List;
 
@@ -100,6 +102,9 @@ public class WebUI {
     public static void openURL (String URL) {
         DriverManager.getDriver().get(URL);
         waitForPageLoaded();
+    }
+    public static String getCurrentURL(){
+        return DriverManager.getDriver().getCurrentUrl();
     }
     public static void clickToElement ( By by){
         waitForElementVisible(by);

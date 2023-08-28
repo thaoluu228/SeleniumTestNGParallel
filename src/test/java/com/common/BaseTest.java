@@ -1,5 +1,6 @@
 package com.common;
 
+import com.listeners.TestListener;
 import driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.*;
 
+import java.util.Collections;
+
+@Listeners(TestListener.class)
 public class BaseTest {
 
 
@@ -26,7 +30,9 @@ public class BaseTest {
         switch (browserName.trim().toLowerCase()) {
             case "chrome":
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
+                //options.addArguments("disable-infobars");
+                options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                options.setExperimentalOption("useAutomationExtension", false);
                 driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
                 break;
